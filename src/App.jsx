@@ -18,12 +18,13 @@ import { DashboardPage } from './pages/DashboardPage'
 import { CreateResumePage } from './pages/CreateResumePage'
 import { ResetPasswordPage } from './pages/auth/ResetPasswordPage'
 import { VerifyEmailPage } from './pages/auth/VerifyEmailPage'
-import { DownloadPage } from './pages/DownloadPage'
+import { TemplateGalleryPage } from './pages/TemplateGalleryPage'
 import { StyleGuidePage } from './pages/StyleGuidePage'
 import { ProfilePage } from './pages/ProfilePage'
 import { ChangePasswordPage } from './pages/ChangePasswordPage'
 import { ResumePage } from './pages/ResumePage'
 import { HelpPage } from './pages/HelpPage'
+import { CoverLetterPage } from './pages/CoverLetterPage'
 import './App.css'
 
 export function HomePage() {
@@ -83,12 +84,12 @@ export function App() {
             <Route element={<DashboardLayout><Outlet /></DashboardLayout>}>
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path="/create-resume" element={<CreateResumePage />} />
-                <Route path="/template-gallery" element={<DownloadPage />} />
-                <Route path="/download-templates" element={<DownloadPage />} />
+                <Route path="/template-gallery" element={<TemplateGalleryPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/change-password" element={<ChangePasswordPage />} />
                 <Route path="/resume" element={<ResumePage />} />
                 <Route path="/help" element={<HelpPage />} />
+                <Route path="/cover-letters" element={<CoverLetterPage />} />
             </Route>
             <Route element={<BaseLayout><Outlet /></BaseLayout>}>
                 <Route path="/style-guide" element={<StyleGuidePage />} />

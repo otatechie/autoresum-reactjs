@@ -1,11 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { UserCircleIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 
 // Navigation item component
 function NavItem({ to, isActive, icon, children, onClick }) {
-    const baseClasses = "flex items-center gap-x-3 text-sm font-medium transition-all py-3";
-    const activeClasses = "text-gray-900 dark:text-white";
+    const baseClasses = "flex items-center gap-x-3 text-sm font-medium transition-all py-3 relative";
+    const activeClasses = "text-blue-600 dark:text-blue-500 bg-gray-50 dark:bg-gray-800/50 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-blue-600 dark:before:bg-blue-600";
     const inactiveClasses = "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white";
 
     return (
@@ -15,7 +14,7 @@ function NavItem({ to, isActive, icon, children, onClick }) {
             onClick={onClick}
         >
             <div className="relative flex items-center gap-x-3 px-6">
-                <svg className={`h-6 w-6 ${isActive ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className={`h-6 w-6 ${isActive ? 'text-blue-600 dark:text-blue-600' : 'text-gray-400 dark:text-gray-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={icon} />
                 </svg>
                 {children}
@@ -78,23 +77,23 @@ export function DashboardLayout({ children }) {
             icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
         },
         {
-            to: "/download-templates",
-            label: "Download",
-            icon: "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4",
-        },
-        {
             to: "/resume",
             label: "Resume",
             icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
+        },
+        {
+            to: "/cover-letters",
+            label: "Cover Letters",
+            icon: "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z",
         },
     ];
 
     // User menu items configuration
     const userMenuItems = [
         { to: "/profile", label: "Your profile" },
-        { to: "/change-password", label: "Change password" },
+        { to: "/change-password", label: "Change password", divider: true },
         { to: "/profile", label: "Settings" },
-        { to: "/style-guide", label: "Styleguide" },
+        { to: "/style-guide", label: "Styleguide", divider: true },
         { to: "/logout", label: "Sign out", isRed: true },
     ];
 
@@ -177,24 +176,6 @@ export function DashboardLayout({ children }) {
                             {item.label}
                         </NavItem>
                     ))}
-                    <NavItem
-                        to="/profile"
-                        isActive={location.pathname === "/profile"}
-                        icon="M5 4h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"
-                        onClick={onMenuClick}
-                    >
-                        <UserCircleIcon className="w-5 h-5 mr-2" />
-                        Profile
-                    </NavItem>
-                    <NavItem
-                        to="/help"
-                        isActive={location.pathname === "/help"}
-                        icon="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                        onClick={onMenuClick}
-                    >
-                        <QuestionMarkCircleIcon className="w-5 h-5 mr-2" />
-                        Help & Support
-                    </NavItem>
                 </nav>
             </div>
         );
@@ -252,22 +233,6 @@ export function DashboardLayout({ children }) {
                                 {item.label}
                             </NavItem>
                         ))}
-                        <NavItem
-                            to="/profile"
-                            isActive={location.pathname === "/profile"}
-                            icon="M5 4h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"
-                        >
-                            <UserCircleIcon className="w-5 h-5 mr-2" />
-                            Profile
-                        </NavItem>
-                        <NavItem
-                            to="/help"
-                            isActive={location.pathname === "/help"}
-                            icon="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                        >
-                            <QuestionMarkCircleIcon className="w-5 h-5 mr-2" />
-                            Help & Support
-                        </NavItem>
                     </nav>
                 </div>
             </div>
