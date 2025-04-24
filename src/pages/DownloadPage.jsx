@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const DownloadPage = () => {
+export const DownloadPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [sortBy, setSortBy] = useState('popular');
@@ -371,5 +371,3 @@ const DownloadPage = () => {
             </div>
     );
 };
-
-export default DownloadPage;
