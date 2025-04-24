@@ -8,7 +8,7 @@ export function Footer() {
                 <div className="mb-8 md:mb-8">
                     <div className="flex flex-col items-center md:items-start space-y-4">
                         <a href="/" className="flex items-center group">
-                            <img className="h-12 w-auto transition transform group-hover:scale-105" src="public/images/logo.png"
+                            <img className="h-12 w-auto transition transform group-hover:scale-105" src="/images/logo.png"
                                 alt="Autoresum" />
                         </a>
                         <p className="text-center md:text-left text-gray-600 dark:text-gray-400 max-w-md">
@@ -52,7 +52,7 @@ export function Footer() {
                         <ul className="space-y-3">
                             <li><a href="#" className="footer-link inline-block dark:text-gray-400">Templates</a></li>
                             <li><a href="#" className="footer-link inline-block dark:text-gray-400">Guides</a></li>
-                            <li><a href="#" className="footer-link inline-block dark:text-gray-400">Examples</a></li>
+                            <li><a href="/dashboard" className="footer-link inline-block dark:text-gray-400" target='_blank'>Dashboard</a></li>
                         </ul>
                     </div>
                 </div>

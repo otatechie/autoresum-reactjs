@@ -19,7 +19,7 @@ export function BuildResumeSection() {
                     </div>
                 </div>
                 <div className="relative">
-                    <img src="public/images/jumbotron-cover.jpg"
+                    <img src="/images/jumbotron-cover.jpg"
                         alt="Screenshot of the resume builder application interface" className="w-full object-cover"
                         loading="lazy" width="600" height="400" />
                 </div>

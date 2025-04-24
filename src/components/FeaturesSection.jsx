@@ -30,24 +30,24 @@ const FeatureCard = ({ icon, title, description }) => (
 export function FeaturesSection() {
     const features = [
         {
-            icon: "public/images/job-search.png",
-            title: "Convert with standout resumes",
-            description: "Transform your experience into professionally crafted resumes."
+            title: "AI-Powered Job Search",
+            description: "Find the perfect job matches using our advanced AI algorithms",
+            icon: "/images/job-search.png",
         },
         {
-            icon: "public/images/cv.png",
-            title: "Create faster with smart templates",
-            description: "Build polished, job-specific applications in minutes using our intelligent template system."
+            title: "Smart Resume Builder",
+            description: "Create professional resumes with AI-powered suggestions",
+            icon: "/images/cv.png",
         },
         {
-            icon: "public/images/job-guide.png",
-            title: "Refine with expert guidance",
-            description: "Fine-tune your applications with industry-specific recommendations that highlight your qualifications."
+            title: "Career Guidance",
+            description: "Get personalized career advice and job market insights",
+            icon: "/images/job-guide.png",
         },
         {
-            icon: "public/images/job-seeker.png",
-            title: "Optimize with proven results",
-            description: "Track which applications are performing best and continuously improve your success rate."
+            title: "Application Tracking",
+            description: "Keep track of all your job applications in one place",
+            icon: "/images/job-seeker.png",
         }
     ];
 

@@ -18,6 +18,7 @@ import { DashboardPage } from './pages/DashboardPage'
 import { CreateResumePage } from './pages/CreateResumePage'
 import { ResetPasswordPage } from './pages/auth/ResetPasswordPage'
 import { VerifyEmailPage } from './pages/auth/VerifyEmailPage'
+import { DownloadPage } from './pages/DownloadPage'
 import { StyleGuidePage } from './pages/StyleGuidePage'
 import './App.css'
 
@@ -78,6 +79,7 @@ export function App() {
             <Route element={<DashboardLayout><Outlet /></DashboardLayout>}>
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path="/create-resume" element={<CreateResumePage />} />
+                <Route path="/download-templates" element={<DownloadPage />} />
             </Route>
             <Route element={<BaseLayout><Outlet /></BaseLayout>}>
                 <Route path="/style-guide" element={<StyleGuidePage />} />

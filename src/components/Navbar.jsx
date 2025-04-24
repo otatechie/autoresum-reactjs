@@ -10,7 +10,7 @@ export function Navbar() {
                     <div className="flex-shrink-0">
                         <a href="/" className="flex items-center group">
                             <img className="h-12 w-auto transition transform group-hover:scale-105 dark:brightness-110"
-                                src="public/images/logo.png" alt="Autoresum" />
+                                src="/images/logo.png" alt="Autoresum" />
                         </a>
                     </div>
 

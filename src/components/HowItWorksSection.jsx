@@ -84,7 +84,7 @@ export function HowItWorksSection() {
             </section>
 
             <section className="w-full mx-auto text-center px-4 bg-[#F5F7FF] dark:bg-gray-800/50 py-24 relative overflow-hidden" aria-labelledby="stress-free-heading">
-                <div className="absolute inset-0 bg-[url('/public/images/grid-pattern.svg')] opacity-[0.015] dark:opacity-[0.03]"></div>
+                <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-[0.015] dark:opacity-[0.03]"></div>
                 <div className="absolute inset-0">
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-indigo-50/50 dark:from-blue-900/10 dark:to-indigo-900/10"></div>
                 </div>
