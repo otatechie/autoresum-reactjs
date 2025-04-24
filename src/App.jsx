@@ -22,6 +22,8 @@ import { DownloadPage } from './pages/DownloadPage'
 import { StyleGuidePage } from './pages/StyleGuidePage'
 import { ProfilePage } from './pages/ProfilePage'
 import { ChangePasswordPage } from './pages/ChangePasswordPage'
+import { ResumePage } from './pages/ResumePage'
+import { HelpPage } from './pages/HelpPage'
 import './App.css'
 
 export function HomePage() {
@@ -81,9 +83,12 @@ export function App() {
             <Route element={<DashboardLayout><Outlet /></DashboardLayout>}>
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path="/create-resume" element={<CreateResumePage />} />
+                <Route path="/template-gallery" element={<DownloadPage />} />
                 <Route path="/download-templates" element={<DownloadPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/change-password" element={<ChangePasswordPage />} />
+                <Route path="/resume" element={<ResumePage />} />
+                <Route path="/help" element={<HelpPage />} />
             </Route>
             <Route element={<BaseLayout><Outlet /></BaseLayout>}>
                 <Route path="/style-guide" element={<StyleGuidePage />} />
