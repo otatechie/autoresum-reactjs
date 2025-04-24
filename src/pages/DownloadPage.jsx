@@ -129,28 +129,28 @@ export const DownloadPage = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-6">
             {/* Header Section */}
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Templates</h1>
-                <div className="flex flex-col md:flex-row gap-4">
+            <div className="mb-6">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">Templates</h1>
+                <div className="flex flex-col md:flex-row gap-3">
                     <div className="flex-1">
                         <div className="relative">
                             <input
                                 type="text"
                                 placeholder="Search templates..."
-                                className="w-full px-4 py-2 pl-10 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                                className="w-full px-3 py-1.5 pl-9 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
-                            <svg className="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 text-gray-400 absolute left-3 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                        </svg>
+                            </svg>
                         </div>
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex gap-2">
                         <select
-                            className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                            className="px-3 py-1.5 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                             value={selectedCategory}
                             onChange={(e) => setSelectedCategory(e.target.value)}
                         >
@@ -162,7 +162,7 @@ export const DownloadPage = () => {
                             <option value="Technical">Technical</option>
                         </select>
                         <select
-                            className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                            className="px-3 py-1.5 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value)}
                         >
@@ -170,64 +170,58 @@ export const DownloadPage = () => {
                             <option value="rating">Highest Rated</option>
                             <option value="newest">Newest First</option>
                         </select>
-                            </div>
-                                        </div>
-                                    </div>
+                    </div>
+                </div>
+            </div>
 
             {/* Featured Templates */}
             {featuredTemplates.length > 0 && (
-                <div className="mb-12">
-                    <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Featured Templates</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="mb-8">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4">Featured Templates</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {featuredTemplates.map(template => (
                             <div key={template.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                                 <div className="relative">
                                     <img
                                         src={template.preview}
                                         alt={template.name}
-                                        className="w-full h-48 object-cover"
+                                        className="w-full h-40 sm:h-48 object-cover"
                                     />
-                                    <span className="absolute top-2 right-2 bg-yellow-400 text-yellow-800 text-xs font-bold px-2 py-1 rounded">
+                                    <span className="absolute top-2 right-2 bg-yellow-400 text-yellow-800 text-xs font-bold px-2 py-0.5 rounded">
                                         Featured
                                     </span>
                                 </div>
                                 <div className="p-4">
                                     <div className="flex items-center justify-between mb-2">
-                                        <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                                        <span className="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400">
                                             {template.category}
                                         </span>
                                         <div className="flex items-center">
-                                            <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                            <svg className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                                                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                             </svg>
-                                            <span className="ml-1 text-sm text-gray-600 dark:text-gray-400">
+                                            <span className="ml-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                                                 {template.rating}
                                             </span>
                                         </div>
                                     </div>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1">
                                         {template.name}
                                     </h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">
                                         {template.description}
                                     </p>
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                                            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                                </svg>
-                                            {template.downloads} downloads
-                                        </div>
+                                    <div className="flex items-center justify-end">
                                         <div className="flex gap-2">
                                             <button
                                                 onClick={() => handlePreview(template)}
-                                                className="btn btn-outline rounded-full text-sm px-4 py-2"
+                                                className="inline-flex items-center px-2.5 py-1 text-xs sm:text-sm font-medium rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
                                             >
                                                 Preview
                                             </button>
                                             <button
                                                 onClick={() => handleDownload(template)}
-                                                className="btn btn-primary rounded-full text-sm px-4 py-2"
+                                                className="inline-flex items-center px-2.5 py-1 text-xs sm:text-sm font-medium rounded-full bg-blue-600 text-white hover:bg-blue-700"
                                             >
                                                 Download
                                             </button>
@@ -236,70 +230,64 @@ export const DownloadPage = () => {
                                 </div>
                             </div>
                         ))}
-                            </div>
-                        </div>
+                    </div>
+                </div>
             )}
 
             {/* All Templates */}
-                            <div>
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">All Templates</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div>
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4">All Templates</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {otherTemplates.map(template => (
                         <div key={template.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                                <div className="relative">
+                            <div className="relative">
                                 <img
                                     src={template.preview}
                                     alt={template.name}
-                                    className="w-full h-48 object-cover"
+                                    className="w-full h-40 sm:h-48 object-cover"
                                 />
                             </div>
                             <div className="p-4">
                                 <div className="flex items-center justify-between mb-2">
-                                    <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                                    <span className="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400">
                                         {template.category}
-                                        </span>
+                                    </span>
                                     <div className="flex items-center">
-                                        <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                         </svg>
-                                        <span className="ml-1 text-sm text-gray-600 dark:text-gray-400">
+                                        <span className="ml-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                                             {template.rating}
                                         </span>
                                     </div>
                                 </div>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1">
                                     {template.name}
                                 </h3>
-                                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">
                                     {template.description}
                                 </p>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                        </svg>
-                                        {template.downloads} downloads
-                            </div>
+                                <div className="flex items-center justify-end">
                                     <div className="flex gap-2">
                                         <button
                                             onClick={() => handlePreview(template)}
-                                            className="btn btn-outline rounded-full text-sm px-4 py-2"
+                                            className="inline-flex items-center px-2.5 py-1 text-xs sm:text-sm font-medium rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
                                         >
                                             Preview
                                         </button>
                                         <button
                                             onClick={() => handleDownload(template)}
-                                            className="btn btn-primary rounded-full text-sm px-4 py-2"
+                                            className="inline-flex items-center px-2.5 py-1 text-xs sm:text-sm font-medium rounded-full bg-blue-600 text-white hover:bg-blue-700"
                                         >
                                             Download
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                                                </div>
+                        </div>
                     ))}
-                                    </div>
-                                </div>
+                </div>
+            </div>
 
             {/* Preview Modal */}
             {isPreviewOpen && selectedTemplate && (
@@ -309,65 +297,59 @@ export const DownloadPage = () => {
                             <img
                                 src={selectedTemplate.preview}
                                 alt={selectedTemplate.name}
-                                className="w-full h-96 object-cover rounded-t-lg"
+                                className="w-full h-64 sm:h-96 object-cover rounded-t-lg"
                             />
                             <button
                                 onClick={() => setIsPreviewOpen(false)}
-                                className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75"
+                                className="absolute top-2 right-2 text-white bg-black bg-opacity-50 rounded-full p-1.5 hover:bg-opacity-75"
                             >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
                         </div>
-                        <div className="p-6">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="p-4 sm:p-6">
+                            <div className="flex items-center justify-between mb-3">
                                 <div>
-                                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                                         {selectedTemplate.name}
                                     </h2>
-                                    <p className="text-gray-600 dark:text-gray-400">
+                                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                                         {selectedTemplate.category}
                                     </p>
                                 </div>
                                 <div className="flex items-center">
-                                    <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                                </svg>
-                                    <span className="ml-1 text-gray-600 dark:text-gray-400">
+                                    </svg>
+                                    <span className="ml-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                                         {selectedTemplate.rating}
                                     </span>
                                 </div>
                             </div>
-                            <p className="text-gray-600 dark:text-gray-400 mb-6">
+                            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-4">
                                 {selectedTemplate.description}
                             </p>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center text-gray-600 dark:text-gray-400">
-                                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                        </svg>
-                                    {selectedTemplate.downloads} downloads
-                                </div>
-                                <div className="flex gap-4">
+                            <div className="flex items-center justify-end">
+                                <div className="flex gap-2">
                                     <button
                                         onClick={() => setIsPreviewOpen(false)}
-                                        className="btn btn-outline rounded-full px-6 py-2"
+                                        className="inline-flex items-center px-3 py-1 text-xs sm:text-sm font-medium rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
                                     >
                                         Close
                                     </button>
                                     <button
                                         onClick={() => handleDownload(selectedTemplate)}
-                                        className="btn btn-primary rounded-full px-6 py-2"
+                                        className="inline-flex items-center px-3 py-1 text-xs sm:text-sm font-medium rounded-full bg-blue-600 text-white hover:bg-blue-700"
                                     >
                                         Download
-                                        </button>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
-            </div>
+        </div>
     );
 };

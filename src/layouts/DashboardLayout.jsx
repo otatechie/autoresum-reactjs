@@ -102,7 +102,7 @@ export function DashboardLayout({ children }) {
     // User menu items configuration
     const userMenuItems = [
         { to: "/profile", label: "Your profile" },
-        { to: "/profile", label: "Change password" },
+        { to: "/change-password", label: "Change password" },
         { to: "/profile", label: "Settings" },
         { to: "/style-guide", label: "Styleguide" },
         { to: "/logout", label: "Sign out", isRed: true },
@@ -309,7 +309,7 @@ export function DashboardLayout({ children }) {
                                         role="menu"
                                     >
                                         <UserMenuItem to="/profile" onClick={closeUserMenu}>Your profile</UserMenuItem>
-                                        <UserMenuItem to="/profile" onClick={closeUserMenu}>Change password</UserMenuItem>
+                                        <UserMenuItem to="/change-password" onClick={closeUserMenu}>Change password</UserMenuItem>
                                         <UserMenuItem to="/profile" onClick={closeUserMenu}>Settings</UserMenuItem>
                                         
                                         <div className="border-t border-gray-200 dark:border-gray-700 mx-2 my-1" />

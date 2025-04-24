@@ -20,6 +20,8 @@ import { ResetPasswordPage } from './pages/auth/ResetPasswordPage'
 import { VerifyEmailPage } from './pages/auth/VerifyEmailPage'
 import { DownloadPage } from './pages/DownloadPage'
 import { StyleGuidePage } from './pages/StyleGuidePage'
+import { ProfilePage } from './pages/ProfilePage'
+import { ChangePasswordPage } from './pages/ChangePasswordPage'
 import './App.css'
 
 export function HomePage() {
@@ -39,7 +41,7 @@ export function App() {
     useEffect(() => {
         // Clear any existing dark mode setting
         localStorage.removeItem('darkMode');
-        
+
         // Function to update dark mode based on system preference
         const updateDarkMode = (e) => {
             const prefersDark = e?.matches || window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -49,14 +51,14 @@ export function App() {
                 document.documentElement.classList.remove('dark');
             }
         };
-        
+
         // Initial check
         updateDarkMode();
-        
+
         // Add listener for system preference changes
         const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         darkModeMediaQuery.addEventListener('change', updateDarkMode);
-        
+
         // Cleanup
         return () => {
             darkModeMediaQuery.removeEventListener('change', updateDarkMode);
@@ -80,6 +82,8 @@ export function App() {
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path="/create-resume" element={<CreateResumePage />} />
                 <Route path="/download-templates" element={<DownloadPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/change-password" element={<ChangePasswordPage />} />
             </Route>
             <Route element={<BaseLayout><Outlet /></BaseLayout>}>
                 <Route path="/style-guide" element={<StyleGuidePage />} />
