@@ -90,7 +90,7 @@ export function HelpPage() {
                             <input
                                 type="text"
                                 placeholder="Search for help..."
-                                className="w-full px-4 py-3 pl-12 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                className="w-full px-4 py-3 pl-12 text-sm rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             />
                             <svg
                                 className="absolute left-4 top-3.5 h-5 w-5 text-gray-400 dark:text-gray-500"
@@ -175,7 +175,7 @@ export function HelpPage() {
                                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                                         Can't find what you're looking for? Our support team is here to help.
                                     </p>
-                                    <button className="w-full inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700">
+                                    <button className="w-full inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-full bg-blue-600 text-white hover:bg-blue-700">
                                         Contact Support
                                     </button>
                                 </div>

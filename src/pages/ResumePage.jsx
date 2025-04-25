@@ -71,15 +71,15 @@ export function ResumePage() {
                             Manage and customize your resume
                         </p>
                     </div>
-                    <div className="flex gap-2">
+                    <div>
                         <Link
                             to="/create-resume"
-                            className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-full bg-blue-600 text-white hover:bg-blue-700"
                         >
                             Create New
                         </Link>
                         <button
-                            className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 ml-2"
                         >
                             Download PDF
                         </button>
@@ -184,12 +184,12 @@ export function ResumePage() {
                                     </h2>
                                     <div className="flex gap-2">
                                         <button
-                                            className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
+                                            className="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
                                         >
                                             Print
                                         </button>
                                         <button
-                                            className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700"
+                                            className="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-full bg-blue-600 text-white hover:bg-blue-700"
                                         >
                                             Download
                                         </button>
@@ -218,7 +218,7 @@ export function ResumePage() {
                                     </h2>
                                     <button
                                         onClick={addNewSection}
-                                        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700"
+                                        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-blue-600 text-white hover:bg-blue-700"
                                     >
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -251,7 +251,7 @@ export function ResumePage() {
                                                 <div className="p-4 border-t border-gray-200 dark:border-gray-700">
                                                     <input
                                                         type="text"
-                                                        className="w-full mb-4 px-3 py-2 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                        className="w-full mb-4 px-3 py-2 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                         value={section.title}
                                                         onChange={(e) => {
                                                             const newSections = resumeData.sections.map(s => 

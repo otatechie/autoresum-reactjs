@@ -232,13 +232,13 @@ export function DashboardPage() {
                                         <div className="mt-4 flex items-center justify-end gap-2">
                                             <Link
                                                 to={`/edit-resume/${resume.id}`}
-                                                className="flex-1 inline-flex justify-center items-center px-3 py-1.5 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
+                                                className="flex-1 inline-flex justify-center items-center px-3 py-1.5 text-sm font-medium rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
                                             >
                                                 Edit
                                             </Link>
                                             <Link
                                                 to={`/preview-resume/${resume.id}`}
-                                                className="flex-1 inline-flex justify-center items-center px-3 py-1.5 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+                                                className="flex-1 inline-flex justify-center items-center px-3 py-1.5 text-sm font-medium rounded-full bg-blue-600 text-white hover:bg-blue-700"
                                             >
                                                 Preview
                                             </Link>
@@ -258,7 +258,7 @@ export function DashboardPage() {
                                 <div className="mt-6">
                                     <Link
                                         to="/create-resume"
-                                        className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+                                        className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-full bg-blue-600 text-white hover:bg-blue-700"
                                     >
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
