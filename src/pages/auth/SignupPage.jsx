@@ -1,11 +1,129 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import AuthService from '../../services/AuthService';
+import { toast } from '../../utils/notifications';
+import { validateEmail, validateName, validatePassword, validatePasswordConfirmation } from '../../utils/validation';
 
 export function SignupPage() {
+    const navigate = useNavigate();
+    const authService = new AuthService();
+
+    const [formData, setFormData] = useState({
+        email: '',
+        username: '',
+        password: '',
+        confirmPassword: '',
+        firstName: '',
+        lastName: ''
+    });
+
+    const [formErrors, setFormErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const togglePassword = () => {
         setShowPassword(!showPassword);
+    };
+
+    const toggleConfirmPassword = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+
+        // Clear error when user starts typing
+        if (formErrors[name]) {
+            setFormErrors(prev => ({
+                ...prev,
+                [name]: null
+            }));
+        }
+    };
+
+    const validateForm = () => {
+        const errors = {};
+
+        // Email validation
+        const emailValidation = validateEmail(formData.email);
+        if (!emailValidation.isValid) {
+            errors.email = emailValidation.error;
+        }
+
+        // Username validation
+        const usernameValidation = validateName(formData.username, 'Username', { required: true });
+        if (!usernameValidation.isValid) {
+            errors.username = usernameValidation.error;
+        }
+
+        // First name validation
+        const firstNameValidation = validateName(formData.firstName, 'First name', { required: true });
+        if (!firstNameValidation.isValid) {
+            errors.firstName = firstNameValidation.error;
+        }
+
+        // Last name validation
+        const lastNameValidation = validateName(formData.lastName, 'Last name', { required: true });
+        if (!lastNameValidation.isValid) {
+            errors.lastName = lastNameValidation.error;
+        }
+
+        // Password validation
+        const passwordValidation = validatePassword(formData.password);
+        if (!passwordValidation.isValid) {
+            errors.password = passwordValidation.errors[0];
+        }
+
+        // Password confirmation validation
+        const confirmPasswordValidation = validatePasswordConfirmation(formData.password, formData.confirmPassword);
+        if (!confirmPasswordValidation.isValid) {
+            errors.confirmPassword = confirmPasswordValidation.error;
+        }
+
+        return errors;
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Validate form
+        const errors = validateForm();
+        if (Object.keys(errors).length > 0) {
+            setFormErrors(errors);
+            return;
+        }
+
+        setIsLoading(true);
+        setFormErrors({});
+
+        try {
+            const result = await authService.signUp(formData);
+
+            // Show success message
+            toast.success(result.message || 'Account created successfully!');
+
+            // Redirect to dashboard or login
+            navigate('/dashboard');
+
+        } catch (error) {
+            console.error('Signup error:', error);
+
+            // Handle validation errors
+            if (error.validationErrors && Object.keys(error.validationErrors).length > 0) {
+                setFormErrors(error.validationErrors);
+            }
+
+            // Show error toast
+            toast.error(error.message || 'Failed to create account. Please try again.');
+
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -13,48 +131,168 @@ export function SignupPage() {
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Sign up</h1>
             <p className="mt-2 text-gray-700 dark:text-gray-300 text-sm">
                 Already have an account?
-                <a href="/login" className="link-primary dark:text-blue-400 dark:hover:text-blue-300 ml-1">Login</a>
+                <Link to="/login" className="link-primary dark:text-blue-400 dark:hover:text-blue-300 ml-1">Login</Link>
             </p>
-            <form method="POST" className="mt-6" action="/signup">
+            <form onSubmit={handleSubmit} className="mt-6">
                 <div className="mt-4">
                     <label htmlFor="email" className="block">Email</label>
-                    <input type="email" name="email" id="email" autocomplete="email" className="form-control" required />
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        autoComplete="email"
+                        className={`form-control ${formErrors.email ? 'border-red-500' : ''}`}
+                        required
+                    />
+                    {formErrors.email && (
+                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{formErrors.email}</p>
+                    )}
+                </div>
+                <div className="mt-4">
+                    <label htmlFor="username" className="block">Username</label>
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        value={formData.username}
+                        onChange={handleInputChange}
+                        autoComplete="username"
+                        className={`form-control ${formErrors.username ? 'border-red-500' : ''}`}
+                        required
+                    />
+                    {formErrors.username && (
+                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{formErrors.username}</p>
+                    )}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div>
+                        <label htmlFor="firstName" className="block">First name</label>
+                        <input
+                            type="text"
+                            name="firstName"
+                            id="firstName"
+                            value={formData.firstName}
+                            onChange={handleInputChange}
+                            autoComplete="given-name"
+                            className={`form-control ${formErrors.firstName ? 'border-red-500' : ''}`}
+                            required
+                        />
+                        {formErrors.firstName && (
+                            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{formErrors.firstName}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label htmlFor="lastName" className="block">Last name</label>
+                        <input
+                            type="text"
+                            name="lastName"
+                            id="lastName"
+                            value={formData.lastName}
+                            onChange={handleInputChange}
+                            autoComplete="family-name"
+                            className={`form-control ${formErrors.lastName ? 'border-red-500' : ''}`}
+                            required
+                        />
+                        {formErrors.lastName && (
+                            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{formErrors.lastName}</p>
+                        )}
+                    </div>
                 </div>
                 <div className="mt-4">
                     <div className="relative flex items-center justify-between">
-                        <label htmlFor="new-password" className="block">Password</label>
-                        <button type="button" id="toggle-password"
-                            className="flex items-center text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 cursor-pointer">
+                        <label htmlFor="password" className="block">Password</label>
+                        <button
+                            type="button"
+                            onClick={togglePassword}
+                            className="flex items-center text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 cursor-pointer"
+                        >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                     d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                             </svg>
-                            <span class="font-medium text-sm">Show</span>
+                            <span className="font-medium text-sm">{showPassword ? 'Hide' : 'Show'}</span>
                         </button>
                     </div>
-                    <input type="password" name="new-password" id="new-password" className="form-control"
-                        autocomplete="new-password" required minlength="8" />
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        id="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        className={`form-control ${formErrors.password ? 'border-red-500' : ''}`}
+                        autoComplete="new-password"
+                        required
+                        minLength="8"
+                    />
+                    {formErrors.password && (
+                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{formErrors.password}</p>
+                    )}
                 </div>
                 <div className="mt-4">
-                    <label htmlFor="confirm-password" className="block">Confirm password</label>
-                    <input type="password" name="confirm-password" id="confirm-password" className="form-control"
-                        autocomplete="new-password" required minlength="8" />
+                    <div className="relative flex items-center justify-between">
+                        <label htmlFor="confirmPassword" className="block">Confirm password</label>
+                        <button
+                            type="button"
+                            onClick={toggleConfirmPassword}
+                            className="flex items-center text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 cursor-pointer"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <span className="font-medium text-sm">{showConfirmPassword ? 'Hide' : 'Show'}</span>
+                        </button>
+                    </div>
+                    <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        id="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleInputChange}
+                        className={`form-control ${formErrors.confirmPassword ? 'border-red-500' : ''}`}
+                        autoComplete="new-password"
+                        required
+                        minLength="8"
+                    />
+                    {formErrors.confirmPassword && (
+                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{formErrors.confirmPassword}</p>
+                    )}
                 </div>
                 <p className="text-gray-600 text-sm dark:text-gray-400 my-4">
                     By creating an account, you agree to our
-                    <a href="/terms" className="link-primary dark:text-blue-400 dark:hover:text-blue-300">Terms</a>
-                    and
-                    have read and acknowledge the
-                    <a href="/privacy" className="link-primary">
+                    <Link to="/terms" className="link-primary dark:text-blue-400 dark:hover:text-blue-300 mx-1">Terms</Link>
+                    and have read and acknowledge the
+                    <Link to="/privacy" className="link-primary dark:text-blue-400 dark:hover:text-blue-300 mx-1">
                         Global Privacy Statement
-                    </a>.
+                    </Link>.
                 </p>
                 <div className="mt-4">
-                    <button type="submit" className="btn-primary dark:bg-blue-600 dark:hover:bg-blue-700">
-                        Sign up
+                    <button
+                        type="submit"
+                        disabled={isLoading}
+                        className={`btn-primary dark:bg-blue-600 dark:hover:bg-blue-700 w-full ${
+                            isLoading ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                    >
+                        {isLoading ? (
+                            <div className="flex items-center justify-center">
+                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Creating account...
+                            </div>
+                        ) : (
+                            'Sign up'
+                        )}
                     </button>
                 </div>
                 <div className="border-t border-1 border-gray-200 dark:border-gray-700 my-4" role="separator"></div>
@@ -62,7 +300,11 @@ export function SignupPage() {
                     Or, get started by signing up with your Google account:
                 </p>
                 <div className="mt-4">
-                    <button type="button" className="btn-google">
+                    <button
+                        type="button"
+                        disabled={isLoading}
+                        className={`btn-google w-full ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
                         <div className="flex justify-center items-center h-6 -ml-4">
                             <svg width="28" height="28" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                                 <path
